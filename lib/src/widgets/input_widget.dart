@@ -66,6 +66,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final TextStyle textStyle;
   final TextStyle selectorTextStyle;
+  final TextStyle hintTextStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
@@ -73,6 +74,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final FocusNode focusNode;
 
   final List<String> countries;
+
+  final Color dropdownColor;
 
   InternationalPhoneNumberInput(
       {Key key,
@@ -87,6 +90,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.keyboardAction,
       this.initialValue,
       this.hintText = 'Phone number',
+      this.hintTextStyle,
       this.errorMessage = 'Invalid phone number',
       this.selectorButtonOnErrorPadding = 24,
       this.maxLength = 15,
@@ -104,7 +108,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.focusNode,
-      this.countries})
+      this.countries,
+      this.dropdownColor})
       : super(key: key);
 
   @override
@@ -249,6 +254,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
+          hintStyle: widget.hintTextStyle,
         );
   }
 
@@ -310,6 +316,7 @@ class _InputWidgetView
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SelectorButton(
+                dropdownColor: widget.dropdownColor,
                 country: state.country,
                 countries: state.countries,
                 onCountryChanged: state.onCountryChanged,
